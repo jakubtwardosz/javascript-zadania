@@ -10,7 +10,7 @@ let findTagElements = function(tag){
     return document.querySelectorAll(tag);
 }
 
-console.log(returnElements("body"));
+console.log(findTagElements("body"));
 
 // Zadanie 3
 
@@ -20,7 +20,16 @@ console.log(findIdList);
 
 // Zadanie 4
 
-// const getElements = (selector) {
-//     return document.querySelectorAll(selector);
-// }
+function displayElements(element){
+    console.log(element);
+}
 
+displayElements(document.querySelectorAll('li'));
+
+displayElements(document.querySelectorAll('ul'));
+
+displayElements(document.querySelectorAll('span'));
+
+displayElements(document.querySelectorAll('div.list span'));
+
+displayElements(document.querySelectorAll('div#spans span'));
