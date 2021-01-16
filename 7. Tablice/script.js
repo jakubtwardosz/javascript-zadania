@@ -122,4 +122,79 @@ console.log(arr2.reverse());
 
 // Zadanie 4
 
+function zad4(array) {
+    let sumArr = 0;
 
+    for (let i = 0; i < array.length; i++) {
+        sumArr = sumArr + array[i];
+    }
+
+    console.log(sumArr);
+}
+
+zad4([4,8,15,16,23,42]);
+
+// Zadanie 5
+
+function zad5(array) {
+    let sumArr = 0;
+
+    for (let i = 0; i < array.length; i++) {
+        sumArr = sumArr + array[i];
+    }
+
+    var avg = sumArr/array.length;
+
+    for (let i = 0; i < array.length; i++) {
+        console.log(array[i] * avg);        
+    }
+}
+
+zad5([4,8,15,16,23,42]);
+
+// Zadanie 6
+
+function zad6(array) {
+    let sumArr = 0;
+    for (let i = 0; i < array.length; i++) {
+        if (array[i] % 2 == 0) {
+            sumArr = sumArr + array[i];
+        }
+    }
+
+    var avg = sumArr/array.length;
+
+    console.log(avg);
+}
+
+zad6([4,8,15,16,23,42]);
+
+// Zadanie 7
+
+function zad7(array) {
+    console.log(array.sort((a, b) => a - b));
+}
+
+zad7([4,8,15,16,23,42]);
+
+// Zadanie 8
+
+function zad8(arrayA, arrayB){
+    let sumArray = [];
+
+    arrayA.forEach((element, i) => {
+        sumArray.push(element + arrayB[i]);
+    });
+
+    console.log(sumArray);
+}
+
+zad8([4,8,15,16,23,42], [4,8,15,16,23,42]);
+
+// Zadanie 9
+
+function zad9(array){
+    console.log(array.map(i => i * -1));
+}
+
+zad9([4,8,15,16,23,42]);
