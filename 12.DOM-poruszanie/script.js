@@ -1,17 +1,16 @@
 // Zadanie 1 
 
-console.log(document.getElementById("buzz").parentElement);
+console.log(document.getElementById("buz").parentElement);
 
-console.log(document.getElementById("buz").nextElementSibling);
+console.log(document.getElementById("baz").previousElementSibling);
 
-var dzieci = document.getElementById("fuz").children;
+console.log(document.getElementById("foo").children);
 
-var rodzic = document.getElementById("foo").parentNode;
-console.log(rodzic);
+console.log(document.getElementById("foo").parentNode);
 
-var pierwszeDziecko = document.getElementById("foo").children[0];
+console.log(document.getElementById("foo").children[0]);
 
-var middleDziecko = document.getElementById("foo").children[1];
+console.log(document.getElementById("foo").children[1]);
 
 
 // Zadanie 2 
@@ -28,49 +27,56 @@ listenEvent(ex2Element);
 
 // Zadanie 3 
 
-const add = (elements) => {
-    for(var i = 0; i < elements.length; i++){
-
-        elements[i].addEventListener("click", function(){
-
-        })
-   }
-}
-
-add(document.getElementById('#ex3 button'));
-
-
-
-
+document.querySelector('#ex3').querySelectorAll('button').forEach((element) => {
+    element.addEventListener('click', (event) => {
+        event.target.nextElementSibling.style.display = event.target.nextElementSibling.style.display == 'none' ? 'block' : 'none';
+    });
+});
 
 // Zadanie 4
 
-function changeColor() { 
-    let buttons = document.querySelectorAll('#ex3 button');
-    buttons.forEach(element => { 
+document.querySelector('#ex3').querySelectorAll('button').forEach((element) => {
     element.addEventListener('click', () => {
         let randomColor = "#" + Math.floor(Math.random()*16777215).toString(16);
-    element.parentElement.style.backgroundColor = randomColor;
-    })})
-    }
-    
-    changeColor();
+        element.parentElement.style.backgroundColor = randomColor;
+    });
+});
 
 // Zadanie 5
 
-function changeColor() {
-    var element = document.getElementById('ex5');
-    element.querySelectorAll('div').forEach((div) => {
-        div.onmouseover = () => {
-            //var elem = element.querySelectorAll('ul li:first-child');
-            //var elem = element.querySelectorAll('ul li:last-child');
-            //var elem = element.querySelectorAll('ul li:nth-of-type(2n)')
-            //var elem = element.querySelectorAll('ul li');
-            var elem = element.query
-           
-            elem.forEach(el => el.style.backgroundColor = div.style.backgroundColor);
-        };
+const rect = document.querySelectorAll("#ex5 div");
+const list = document.querySelector("#ex5 ul");
+const listElements = document.querySelectorAll("#ex5 ul li")
+
+rect.forEach(rect => rect.addEventListener("mouseover", (e) => {
+
+    listElements[0].style.backgroundColor = e.target.style.backgroundColor
+
+    listElements[listElements.length - 1].style.backgroundColor = e.target.style.backgroundColor
+
+    listElements.forEach((el, idx) => {
+        if (idx % 2 === 1) el.style.backgroundColor = e.target.style.backgroundColor
+    })
+
+    listElements.forEach((el, idx) => {
+        if (idx % 2 === 0) el.style.backgroundColor = e.target.style.backgroundColor
+    })
     
-    });
-}
-changeColor();
+    list.style.backgroundColor
+}))
+
+// Zadanie 6
+
+let zad6 = document.querySelector("#ex6");
+
+let first = zad6.firstElementChild.firstElementChild.firstElementChild;
+
+console.log(first);
+
+let second = zad6.firstElementChild.parentElement.firstElementChild.firstElementChild.nextElementSibling.parentElement;
+
+console.log(second);
+
+let third = zad6.parentElement.firstElementChild.parentElement.children[1].firstElementChild.firstElementChild.firstElementChild;
+
+console.log(third);
