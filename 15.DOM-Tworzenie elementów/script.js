@@ -116,4 +116,229 @@ checkButtonDisabled();
 
 // Zadanie 8
 
-// Stwórz formularz do którego będzie można wpisać jaki element user chce utworzyć, z jakim tekstem, z kolorem tekstu i ile razy ma być ten element powtórzony na stronie. Po kliknięciu na button "Utwórz" formularz powinien tworzyć taką strukturę.
+let form = document.createElement('form');
+let typeElement = document.createElement('input');
+typeElement.placeholder = "Element: ";
+let inputText = document.createElement('input');
+inputText.placeholder = "Tekst: ";
+let colorText = document.createElement('input');
+colorText.placeholder = "Kolor: ";
+let elementCounter = document.createElement('input');
+elementCounter.placeholder = "Ile razy: ";
+let createButton = document.createElement('button');
+createButton.innerText = "Utwórz";
+createButton.type = "submit";
+
+form.appendChild(typeElement);
+form.appendChild(inputText);
+form.appendChild(colorText);
+form.appendChild(elementCounter);
+form.appendChild(createButton);
+
+document.querySelector("#root").appendChild(form);
+
+createButton.addEventListener('click', (event) => {
+    event.preventDefault();
+
+    for (let i = 0; i < parseInt(elementCounter.value); i++) {
+      let newElement = document.createElement(`${typeElement.value}`);
+      newElement.style.color = `${colorText.value}`;
+      newElement.innerText = inputText.value;
+
+      root.appendChild(newElement);
+    }
+});
+
+// Zadanie 9
+
+let container = document.createElement("div");
+
+document.body.appendChild(container);
+
+function renderForm(){
+    let form = document.createElement('form');
+    form.classList.add('zad9-form');
+
+    let name = document.createElement('input');
+    name.placeholder = "Imię";
+    name.setAttribute('name', 'name');
+
+    let surname = document.createElement('input');
+    surname.placeholder = "Nazwisko";
+    surname.setAttribute('name', 'surname');
+
+    let age = document.createElement('input');
+    age.placeholder = "Wiek";
+    age.setAttribute('name', 'age');
+
+    let numberOfKids = document.createElement('input');
+    numberOfKids.placeholder = "Ilość dzieci";
+    numberOfKids.setAttribute('name', 'numberOfKids');
+
+    form.appendChild(name);
+	form.appendChild(surname);
+	form.appendChild(age);
+    form.appendChild(numberOfKids);
+    return form;
+}
+
+container.appendChild(renderForm());
+
+let addButton = document.createElement('button');
+addButton.innerText = "Utwórz";
+addButton.addEventListener("click", () => {
+	table.innerHTML += createTable();
+});
+container.appendChild(addButton);
+
+
+let moreButton = document.createElement('button');
+moreButton.innerText = "Więcej";
+moreButton.addEventListener("click", () => {
+	container.appendChild(renderForm()); 
+});
+container.appendChild(moreButton);
+
+let table = document.createElement("table");
+table.classList.add('table-form');
+
+
+document.body.appendChild(table);
+
+function createTable() {
+	const outputTable = document.querySelector(".table-form");
+	
+	let html = "";
+	let forms = document.querySelectorAll(".zad9-form");
+	
+	if(outputTable.innerHTML === ""){
+		html += "<tr><td>Imię</td><td>Nazwisko</td><td>Wiek</td><td>Liczba dzieci</td></tr>";
+	}
+	
+	forms.forEach((form) => {
+        let name = uppercaseFirstLetter(form.querySelector("input[name='name']").value);
+        let surname = uppercaseFirstLetter(form.querySelector("input[name='surname']").value);
+        let age = uppercaseFirstLetter(form.querySelector("input[name='age']").value);
+		let numberOfKids = uppercaseFirstLetter(form.querySelector("input[name='numberOfKids']").value);
+		
+		html += `<tr><th>${name}</th><th>${surname}</th><th>${age}</th><th>${numberOfKids}</th></tr>`;
+	});
+	
+	return html;
+}
+
+// Zadanie 10
+
+function uppercaseFirstLetter(string){
+	if(string !== ""){
+		string = string[0].toUpperCase() + string.substr(1, string.length);
+		return string;
+	}
+	else{
+		return string;
+	}
+}
+
+// Zadanie 11
+
+function zad11(params) {
+    const numbers = params.match(/[0-9]+/g);
+    if (numbers.length > 0) {
+        console.log(numbers.reduce((a, b) => Number(a) + Number(b)));
+
+        const multi = numbers.reduce((a, b) => Number(a) * Number(b));
+
+        console.log(`Suma liczb: ${multi}`);
+
+        for (let i = 0; i < multi; i++) {
+            const div = document.createElement('div');
+            div.innerText = `div${i}`;
+            document.body.appendChild(div);
+        }
+    }
+}
+zad11('tekst22');
+
+// Zadanie 12
+
+function createObject(str) {
+    return {
+        string: str
+    }
+}
+
+const alaStr = createObject('Ala ma kota');
+alaStr.alaToOla = function () {
+    if (this.string.includes('Ala')) {
+        this.string = this.string.replaceAll('Ala', 'Ola');
+        console.log(this.string);
+    } else {
+        const div = document.createElement('div');
+        div.innerText = 'Słowo Ala nie występuje w tekście.';
+        document.body.appendChild(div);
+    }
+}
+
+alaStr.alaToOla();
+
+
+// Zadanie 13
+
+let stringArr = ['Ala','ma','kota wqw2212'];
+
+function returnNumberOfLetters (params){
+    let numbersCounter = 0;
+    params.forEach(v => {
+        numbersCounter += v.length;
+    });
+    return numbersCounter;
+}
+
+function sumNumbers(params) {
+    const numbers = params.map(v => v.match(/[0-9]+/g));
+    const allNumbers = numbers.flat();
+    return allNumbers.reduce((a, b) => Number(a) + Number(b));
+}
+
+function avgNumbers(params) {
+    const numbers = params.map(v => v.match(/[0-9]+/g));
+    const allNumbers = numbers.flat().filter(v => v);
+    const sum = allNumbers.reduce((a, b) => Number(a) + Number(b));
+    return sum / allNumbers.length;
+}
+
+console.log(returnNumberOfLetters(stringArr));
+console.log(sumNumbers(stringArr));
+console.log(avgNumbers(stringArr));
+
+// Zadanie 14
+
+let object = {
+    name: '',
+    surname: '',
+    age: ''
+}
+
+function assignNewValues(name, surname, age) {
+    object.name = name;
+    object.surname = surname,
+    object.age = age;
+
+    if (name.length > 5 || surname.length > 5 || age.length > 5) {
+        let button = document.createElement('button');
+        button.innerText = 'Przywróć';
+        
+        button.addEventListener('click', (e) => {
+            object = {
+                name: '',
+                surname: '',
+                age: ''
+            }
+        });
+        document.body.appendChild(button);
+    }
+}
+
+assignNewValues('Jakub', 'Twardosz', '26');
+console.log(object);
+
